@@ -1,0 +1,25 @@
+{
+  "name": "barnivore",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "module": "esnext",
+  "scripts": {
+    "scrape": "ts-node src/scrape-listing.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/crawler": "^1.2.2",
+    "cheerio": "^1.0.0-rc.10",
+    "crawler": "^1.3.0",
+    "node-fetch": "^3.1.0",
+    "superagent": "^6.1.0",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.5.2"
+  },
+  "devDependencies": {
+    "@types/superagent": "^4.1.13"
+  }
+}

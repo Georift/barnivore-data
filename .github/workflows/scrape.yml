@@ -1,0 +1,31 @@
+name: Scrape latest data
+
+on:
+  push:
+  workflow_dispatch:
+  schedule:
+    # At 3:15 on Tuesday, hopefully people aren't drinking much then!
+    - cron: "3 15 * * 2"
+
+jobs:
+  scheduled:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out this repo
+        uses: actions/checkout@v2
+      - name: Add node
+        uses: actions/setup-node@v2
+        with:
+          node-version: "v16"
+      - name: Fetch latest data
+        run: |-
+          npm ci;
+          npm run scrape;
+      - name: Commit and push if it changed
+        run: |-
+          git config user.name "Automated"
+          git config user.email "actions@users.noreply.github.com"
+          git add -A
+          timestamp=$(date -u)
+          git commit -m "Latest data: ${timestamp}" || exit 0
+          git push
